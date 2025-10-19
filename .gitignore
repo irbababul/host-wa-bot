@@ -1,0 +1,16 @@
+node_modules/
+package-lock.json
+.env
+.wwebjs_auth/
+.wwebjs_cache/
+downloads/*
+!downloads/.gitkeep
+database/*.json
+logs.txt
+*.log
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
