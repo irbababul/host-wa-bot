@@ -36,16 +36,19 @@ const client = new Client({
   }
 });
 
-// GANTI DENGAN INI (main.js baris 41-45)
+// HAPUS BLOK client.on('qr', ...) LAMA ANDA, DAN GANTI DENGAN INI:
 client.on('qr', (qr) => {
-  console.log('\n========================================');
-  console.log('           DATA QR CODE (COPY INI)');
-  console.log('\n');
-  console.log(qr); // Ini akan mencetak data mentah QR-nya
-  console.log('\n');
-  console.log('========================================');
-  console.log('^ COPY SEMUA TEKS DI ATAS (YANG PANJANG ITU) ^');
-  console.log('Lalu paste di website QR Generator (misal: goqr.me)');
+  console.log('\n📱 SCAN QR CODE UNTUK LOGIN:\n');
+  
+  // Ini adalah cara baru untuk mencetak QR code.
+  // Kita ambil string-nya dulu, baru dicetak mentah-mentah (raw)
+  // Semoga ini mengalahkan prefix log [inf] yang merusak.
+  qrcode.generate(qr, { small: true }, function (qrString) {
+    process.stdout.write(qrString + '\n');
+  });
+  
+  console.log('\n✅ Scan QR code di atas dengan WhatsApp Anda');
+  console.log('💡 Jika berantakan, kecilkan (Zoom Out) browser Anda (Ctrl + -) atau matikan "Word Wrap" di log.\n');
 });
 
 client.on('authenticated', () => {
