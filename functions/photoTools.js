@@ -62,13 +62,19 @@ async function removeBackground(msg, media) {
       formData.append('size', 'preview');
       formData.append('image_file', fs.createReadStream(photoPath));
 
-      const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
+      // DIEDIT (Tambahkan baris "timeout")
+    const response = await axios.post(
+      'https://api.remove.bg/v1.0/removebg',
+      formData,
+      {
         headers: {
           ...formData.getHeaders(),
-          'X-Api-Key': removeBgApiKey
+          'X-Api-Key': process.env.REMOVEBG_API_KEY
         },
-        responseType: 'arraybuffer'
-      });
+        responseType: 'arraybuffer',
+        timeout: 20000 // <--- TAMBAHKAN BARIS INI
+      }
+    );
 
       resultPath = path.join(downloadsDir, getUniqueFilename('no-bg.png'));
       fs.writeFileSync(resultPath, response.data);
