@@ -37,18 +37,27 @@ const client = new Client({
 });
 
 // HAPUS BLOK client.on('qr', ...) LAMA ANDA, DAN GANTI DENGAN INI:
+
 client.on('qr', (qr) => {
-  console.log('\n📱 SCAN QR CODE UNTUK LOGIN:\n');
+  console.log('\n\n\n');
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  console.log('!! JANGAN SCAN GAMBAR RUSAK, KITA PAKAI DATA MENTAH !!');
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   
-  // Ini adalah cara baru untuk mencetak QR code.
-  // Kita ambil string-nya dulu, baru dicetak mentah-mentah (raw)
-  // Semoga ini mengalahkan prefix log [inf] yang merusak.
-  qrcode.generate(qr, { small: true }, function (qrString) {
-    process.stdout.write(qrString + '\n');
-  });
+  // Ini akan mencetak DATA string mentah dalam satu baris.
+  // Ini adalah data yang HARUS ANDA COPY.
+  console.log('START_QR_DATA:' + qr + ':END_QR_DATA');
   
-  console.log('\n✅ Scan QR code di atas dengan WhatsApp Anda');
-  console.log('💡 Jika berantakan, kecilkan (Zoom Out) browser Anda (Ctrl + -) atau matikan "Word Wrap" di log.\n');
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  console.log('PETUNJUK PENTING (BACA INI):');
+  console.log('1. Cari di log ini, baris yang ada tulisan "START_QR_DATA:..."');
+  console.log('2. Copy HANYA teks yang ada di antara "START_QR_DATA:" dan ":END_QR_DATA"');
+  console.log('   (Teksnya akan SANGAT PANJANG, dimulai dengan "2@...")');
+  console.log('3. Buka browser dan pergi ke website: goqr.me');
+  console.log('4. Paste teks yang Anda copy itu ke dalam kotak "TEXT".');
+  console.log('5. Scan QR code yang muncul di website itu dengan HP Anda.');
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  console.log('\n\n\n');
 });
 
 client.on('authenticated', () => {
