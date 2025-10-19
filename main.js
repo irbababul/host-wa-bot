@@ -7,7 +7,7 @@ require('./keep_alive');
 
 const { getHelpMessage } = require('./functions/help');
 const { validateFileSize, validateFileFormat, checkRateLimit } = require('./functions/validator');
-const { wordToPdf, pdfToWord, photoToPdf } = require('./functions/convert');
+//const { wordToPdf, pdfToWord, photoToPdf } = require('./functions/convert');
 const { makeSticker, removeBackground, changeBackground } = require('./functions/photoTools');
 const { downloadMedia } = require('./functions/downloader');
 const { addTodo, listTodos, markDone, deleteTodo, setPriority, setDeadline, getSummary, clearCompleted } = require('./functions/todo');
@@ -198,7 +198,7 @@ client.on('message', async (msg) => {
           return;
         }
       }
-
+/*
       if (messageBody.toLowerCase() === '.wordtopdf') {
         const sizeCheck = validateFileSize(fileSize, 'document');
         if (!sizeCheck.valid) {
@@ -242,7 +242,7 @@ client.on('message', async (msg) => {
         await photoToPdf(msg, media);
         return;
       }
-
+*/
       if (messageBody.toLowerCase() === '.s' || messageBody.toLowerCase() === '.stiker' || messageBody.toLowerCase() === '.sticker') {
         const sizeCheck = validateFileSize(fileSize, 'photo');
         if (!sizeCheck.valid) {
