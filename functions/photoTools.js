@@ -59,7 +59,7 @@ async function removeBackground(msg, media) {
 
     if (removeBgApiKey) {
       const formData = new FormData();
-      formData.append('size', 'auto');
+      formData.append('size', 'preview');
       formData.append('image_file', fs.createReadStream(photoPath));
 
       const response = await axios.post('https://api.remove.bg/v1.0/removebg', formData, {
