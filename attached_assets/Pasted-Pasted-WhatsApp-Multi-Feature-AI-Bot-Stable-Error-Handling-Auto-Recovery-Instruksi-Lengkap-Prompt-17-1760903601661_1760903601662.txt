@@ -1,0 +1,140 @@
+Pasted-WhatsApp-Multi-Feature-AI-Bot-Stable-Error-Handling-Auto-Recovery-Instruksi-Lengkap-Prompt-1760902890787_1760902890789.txt
+WhatsApp Multi-Feature AI Bot (Stable + Error Handling + Auto Recovery)
+
+💬 Instruksi Lengkap Prompt
+
+Buatkan WhatsApp Bot otomatis menggunakan Node.js dan library whatsapp-web.js yang berjalan 24 jam di Replit dan bisa digunakan oleh saya serta pengguna lain yang mengirim pesan ke nomor WhatsApp saya.
+
+Bot ini harus:
+
+Tetap jalan stabil meskipun ada error (tidak crash / berhenti)
+
+Memberikan pesan error ke user jika file terlalu besar, format tidak didukung, atau proses gagal
+
+Memiliki log dan auto reconnect jika koneksi WhatsApp putus
+
+Menggunakan sistem keep_alive agar Replit tidak tidur
+
+Bisa dihosting juga di Railway nanti
+
+⚙️ Spesifikasi Utama
+
+Jalankan dengan Express di process.env.PORT
+
+Tambahkan keep_alive.js agar Replit aktif terus
+
+Gunakan qrcode-terminal untuk login WhatsApp pertama kali
+
+Gunakan fs, axios, pdf-lib, mammoth, docx, sharp, node-fetch, node-cron
+
+Semua proses async harus pakai try...catch
+
+Jika ada error, tampilkan pesan ke terminal dan kirim balasan error ke user
+
+File hasil disimpan di folder /downloads
+
+File besar (>3MB) otomatis ditolak dengan pesan “❌ File terlalu besar, maksimal 3MB.”
+
+📁 Struktur Folder
+whatsapp-bot/
+├── main.js
+├── keep_alive.js
+├── package.json
+├── functions/
+│   ├── convert.js        // Word <-> PDF
+│   ├── downloader.js     // YT, IG, TikTok
+│   ├── photoTools.js     // remove bg, ubah bg, stiker
+│   ├── todo.js           // To-do list user
+│   └── help.js           // daftar fitur
+├── downloads/
+└── database/
+    └── todos.json
+
+💡 Fitur dan Perintah
+Fitur	Perintah	Deskripsi
+📄 Word ➜ PDF	.wordtopdf	Kirim file Word, bot ubah ke PDF
+📃 PDF ➜ Word	.pdftoword	Kirim file PDF, bot ubah ke Word
+🖼 Foto ➜ PDF	.fotopdf	Kirim foto, bot ubah ke PDF
+📹 Downloader	.download <link>	Download dari YouTube, TikTok, IG
+🧍‍♂️ Ganti BG Foto	.bg <warna>	Ganti background jadi merah/biru/hijau
+🌟 Foto ➜ Stiker	.s	Kirim foto caption .s, jadi stiker
+📝 To-Do List	.todo add <teks> / .todo list / .todo done <id>	To-do list harian
+❓ Bantuan	/help	Lihat semua fitur dan cara pakai
+🧩 Penanganan Error (WAJIB ADA)
+
+Tambahkan try...catch di setiap fungsi utama (convert, download, photoTools).
+
+Jika error terjadi, bot tetap hidup dan kirim pesan:
+
+“❌ Terjadi kesalahan pada fitur ini. Silakan coba lagi atau kirim file lain.”
+
+Jika file lebih besar dari 3 MB:
+
+“⚠️ File terlalu besar, maksimal 3MB.”
+
+Jika format tidak didukung:
+
+“❌ Format file tidak didukung. Kirim file JPG, PNG, PDF, atau DOCX saja.”
+
+Jika WhatsApp disconnect:
+
+Bot auto restart dan reconnect otomatis.
+
+🪄 Contoh Penanganan Error
+client.on('message', async (msg) => {
+  try {
+    if (msg.hasMedia) {
+      const media = await msg.downloadMedia();
+      if (media.filesize > 3 * 1024 * 1024) {
+        return msg.reply('⚠️ File terlalu besar! Maksimal 3MB.');
+      }
+    }
+
+    if (msg.body.startsWith('.bg')) {
+      const color = msg.body.split(' ')[1] || 'white';
+      await handleBackgroundChange(msg, color);
+    }
+
+  } catch (err) {
+    console.error('❌ Error saat memproses pesan:', err);
+    await msg.reply('❌ Terjadi kesalahan pada sistem. Bot tetap aktif, silakan coba lagi.');
+  }
+});
+
+🧠 Auto Reconnect & Keep Alive
+
+Tambahkan di main.js:
+
+client.on('disconnected', async () => {
+  console.log('🔄 WhatsApp disconnected, reconnecting...');
+  process.exit(1);
+});
+
+
+Dan buat keep_alive.js:
+
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => res.send('Bot is alive!'));
+app.listen(process.env.PORT || 3000);
+
+🌐 Hosting
+
+Untuk tahap awal, jalankan di Replit, lalu deploy ke Railway dengan:
+
+Tambahkan Procfile berisi:
+
+worker: node main.js
+
+
+Pastikan semua library di package.json
+
+Jalankan di Railway (gratis plan)
+
+📦 Dependencies
+npm install whatsapp-web.js express qrcode-terminal axios form-data pdf-lib mammoth docx sharp node-fetch node-cron fs path
+
+
+Kalimat terakhir (biar Agent Replit paham arah pembuatan):
+
+Buatkan semua file sesuai struktur di atas dengan sistem error handling dan log lengkap. Pastikan setiap fitur (PDF, downloader, photo tools, to-do list) memiliki proteksi error agar bot tidak berhenti meskipun ada bug, file rusak, atau koneksi terputus.

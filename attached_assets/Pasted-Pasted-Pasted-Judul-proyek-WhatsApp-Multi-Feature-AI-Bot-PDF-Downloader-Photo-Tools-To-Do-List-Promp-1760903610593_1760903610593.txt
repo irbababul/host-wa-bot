@@ -1,0 +1,92 @@
+Pasted-Pasted-Judul-proyek-WhatsApp-Multi-Feature-AI-Bot-PDF-Downloader-Photo-Tools-To-Do-List-Prompt-leng--1760902935079_1760902935079.txt
+Pasted-Judul-proyek-WhatsApp-Multi-Feature-AI-Bot-PDF-Downloader-Photo-Tools-To-Do-List-Prompt-leng-1760896656127_1760896656128.txt
+Judul proyek:
+
+WhatsApp Multi-Feature AI Bot (PDF, Downloader, Photo Tools, To-Do List)
+
+Prompt lengkap:
+
+Buatkan WhatsApp Bot otomatis menggunakan Node.js dan library whatsapp-web.js yang berjalan 24 jam di Replit.
+
+Bot ini harus bisa digunakan oleh saya sendiri dan oleh pengguna lain yang mengirim pesan ke nomor WhatsApp saya.
+⚙️ Spesifikasi Utama:
+
+Jalankan dengan express di port process.env.PORT
+
+Tambahkan keep_alive.js agar bot tidak tidur di Replit
+
+Gunakan qrcode-terminal untuk login WhatsApp pertama kali
+
+Gunakan fs, axios, dan form-data untuk menangani upload/download file
+
+Gunakan pdf-lib untuk manipulasi PDF
+
+Gunakan mammoth atau docx untuk konversi Word ke PDF dan sebaliknya
+
+Gunakan sharp atau rembg API untuk hapus background foto dan ubah ke warna polos
+
+Gunakan node-fetch untuk API downloader (YouTube, TikTok, IG)
+
+Gunakan node-cron untuk fitur to-do list harian
+
+📁 Struktur Folder:
+whatsapp-bot/
+├── main.js
+├── keep_alive.js
+├── package.json
+├── functions/
+│   ├── convert.js          // word <-> pdf
+│   ├── downloader.js       // yt, ig, tiktok
+│   ├── photoTools.js       // remove bg, make sticker
+│   ├── todo.js             // to-do list per user
+│   └── help.js             // daftar fitur
+├── downloads/
+└── database/
+    └── todos.json
+
+💬 Fitur-Fitur dan Perintah:
+Fitur	Perintah	Deskripsi
+📄 Word ➜ PDF	.wordtopdf	Kirim file Word (.doc/.docx), bot kirim balik versi PDF
+📃 PDF ➜ Word	.pdftoword	Kirim file PDF, bot kirim balik versi Word
+🖼 Foto ➜ PDF	.fotopdf	Kirim foto, bot gabungkan jadi PDF
+📹 Downloader	.download <link>	Download video dari YouTube, TikTok, atau Instagram
+🧍‍♂️ Ganti Background Foto	.bg <warna>	Ganti background ke warna polos merah, biru, atau hijau
+🌟 Foto ➜ Stiker	.s	Kirim foto dengan caption .s, bot ubah jadi stiker
+📝 To-Do List	.todo add <teks> / .todo list / .todo done <id>	Tambah, lihat, dan hapus to-do harian
+❓ Bantuan	/help	Menampilkan semua fitur dan cara pakai
+🪄 Spesifikasi Teknis:
+
+Gunakan format command berbasis titik (.command) dan slash (/help)
+
+Semua file yang dikirim disimpan di folder downloads/
+
+Gunakan nama file unik berdasarkan waktu untuk menghindari bentrok
+
+Jika user mengirim pesan tidak dikenal, bot kirim pesan “Perintah tidak ditemukan. Ketik /help untuk melihat daftar fitur.”
+
+Semua error harus ditangani agar bot tidak crash
+
+Bot otomatis restart jika koneksi WhatsApp terputus
+
+Fitur To-Do List disimpan per nomor WA user (todos.json)
+
+Gunakan setInterval atau node-cron agar reminder dikirim otomatis tiap pagi (misal jam 07:00)
+
+🧩 Dependencies yang harus di-install:
+npm install whatsapp-web.js express qrcode-terminal axios form-data pdf-lib mammoth docx sharp node-fetch node-cron fs path
+
+🌐 Hosting: ini nantinya akan di deploy atau di hosting di railway
+💾 Extra:
+
+Semua file hasil konversi otomatis dihapus setiap 1 jam untuk hemat storage
+
+Tambahkan log aktivitas user ke logs.txt
+
+Gunakan emoji agar balasan bot lebih ramah
+
+🎯 Output Akhir:
+
+Bot WhatsApp otomatis yang berjalan 24 jam di Replit dengan semua fitur di atas.
+Saat pengguna mengetik /help, bot menampilkan semua daftar fitur dan perintahnya dengan format tabel teks rapi.
+
+Semua source code harus sudah lengkap dan bisa langsung dijalankan tanpa error.
