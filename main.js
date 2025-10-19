@@ -36,10 +36,16 @@ const client = new Client({
   }
 });
 
+// GANTI DENGAN INI (main.js baris 41-45)
 client.on('qr', (qr) => {
-  console.log('\n📱 SCAN QR CODE UNTUK LOGIN:\n');
-  qrcode.generate(qr, { small: true });
-  console.log('\n✅ Scan QR code di atas dengan WhatsApp Anda\n');
+  console.log('\n========================================');
+  console.log('           DATA QR CODE (COPY INI)');
+  console.log('\n');
+  console.log(qr); // Ini akan mencetak data mentah QR-nya
+  console.log('\n');
+  console.log('========================================');
+  console.log('^ COPY SEMUA TEKS DI ATAS (YANG PANJANG ITU) ^');
+  console.log('Lalu paste di website QR Generator (misal: goqr.me)');
 });
 
 client.on('authenticated', () => {
