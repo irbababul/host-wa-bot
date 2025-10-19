@@ -39,23 +39,28 @@ const client = new Client({
 // HAPUS BLOK client.on('qr', ...) LAMA ANDA, DAN GANTI DENGAN INI:
 
 client.on('qr', (qr) => {
+  // Kita akan encode string QR agar aman dimasukkan ke dalam URL
+  const encodedQr = encodeURIComponent(qr);
+  
+  // Buat URL lengkap ke API generator QR
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedQr}`;
+  
   console.log('\n\n\n');
   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  console.log('!! JANGAN SCAN GAMBAR RUSAK, KITA PAKAI DATA MENTAH !!');
+  console.log('!!           JANGAN COPY DATA, COPY URL DI BAWAH           !!');
   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+  console.log('\n');
   
-  // Ini akan mencetak DATA string mentah dalam satu baris.
-  // Ini adalah data yang HARUS ANDA COPY.
-  console.log('START_QR_DATA:' + qr + ':END_QR_DATA');
+  // Cetak URL yang harus di-copy
+  console.log('===> COPY LINK DI BAWAH INI KE BROWSER ANDA:');
+  console.log(qrUrl);
+  console.log('\n');
   
-  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-  console.log('PETUNJUK PENTING (BACA INI):');
-  console.log('1. Cari di log ini, baris yang ada tulisan "START_QR_DATA:..."');
-  console.log('2. Copy HANYA teks yang ada di antara "START_QR_DATA:" dan ":END_QR_DATA"');
-  console.log('   (Teksnya akan SANGAT PANJANG, dimulai dengan "2@...")');
-  console.log('3. Buka browser dan pergi ke website: goqr.me');
-  console.log('4. Paste teks yang Anda copy itu ke dalam kotak "TEXT".');
-  console.log('5. Scan QR code yang muncul di website itu dengan HP Anda.');
+  console.log('PETUNJUK:');
+  console.log('1. Copy SELURUH URL di atas (dari "https://" sampai akhir).');
+  console.log('2. Paste URL itu ke address bar browser Anda (seperti Google Chrome).');
+  console.log('3. Halaman baru akan terbuka HANYA berisi QR code yang sempurna.');
+  console.log('4. Scan QR code di halaman browser itu dengan HP Anda.');
   console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
   console.log('\n\n\n');
 });
